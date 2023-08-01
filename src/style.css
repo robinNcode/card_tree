@@ -6,3 +6,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
+
+.vertical-line {
+    border-left: 2px solid #dee2e6;
+    height: 200px;
+    /* Adjust the height as needed */
+    margin-bottom: 20px;
+}

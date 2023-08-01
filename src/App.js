@@ -1,48 +1,46 @@
 import React from 'react';
-import Tree from './components/Tree';
-import './style.css'; // Import the custom CSS file (if using separate CSS)
+import { Container, Row, Col } from 'react-bootstrap';
+import BusinessCard from './components/BusinessCard';
+import DepartmentCard from './components/DepartmentCard';
+import MemberCard from './components/MemberCard';
+import './style.css';
 
-const data = {
-  id: 1,
-  name: 'Parent Node',
-  description: 'This is the parent node',
-  children: [
-    {
-      id: 2,
-      name: 'Child 1',
-      description: 'This is child node 1',
-      children: [
-        {
-          id: 5,
-          name: 'Child 1.1',
-          description: 'This is child node 1.1',
-        },
-        {
-          id: 6,
-          name: 'Child 1.2',
-          description: 'This is child node 1.2',
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: 'Child 2',
-      description: 'This is child node 2',
-    },
-    {
-      id: 4,
-      name: 'Child 3',
-      description: 'This is child node 3',
-    },
-  ],
+const businessData = {
+  name: 'Your Business Name',
+  designation: 'Business Owner',
+  image: 'your-business-image-url.jpg',
 };
+
+const departmentData = [
+  { name: 'Development' },
+  { name: 'Marketing' },
+];
+
+const membersData = [
+  { name: 'John Doe', designation: 'Developer', image: 'john-doe-image.jpg' },
+  { name: 'Jane Doe', designation: 'Marketer', image: 'jane-doe-image.jpg' },
+];
 
 const App = () => {
   return (
-    <div className="container">
-      <h1>Tree using React Bootstrap Cards</h1>
-      <Tree node={data} />
-    </div>
+    <Container className="py-4">
+      <Row>
+        <Col>
+          <BusinessCard business={businessData} />
+        </Col>
+      </Row>
+      <Row>
+        {departmentData.map((department, index) => (
+          <Col key={index} className="d-flex flex-column align-items-center">
+            <DepartmentCard department={department} />
+            <div className="vertical-line"></div>
+            {membersData.map((member, index) => (
+              <MemberCard key={index} member={member} />
+            ))}
+          </Col>
+        ))}
+      </Row>
+    </Container>
   );
 };
 
